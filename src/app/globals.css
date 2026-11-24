@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0b; --surface: #131417; --card: #191b1f; --raised: #22252a; --surface-2: #1b1d21;
+  --border: #2a2d33; --border-strong: #3a3e45; --fg: #f5f6f7; --muted: #a1a6ad; --faint: #7e858d;
+  --success: #3ecf8e; --warning: #f5b544; --danger: #f87171; --info: #60a5fa;
+  --brand: #f26f3e; --brand-hover: color-mix(in srgb, var(--brand) 88%, black); --brand-strong: var(--brand);
+  --brand-cta: #c04a1a; --brand-cta-hover: #a94117; --danger-solid: #b91c1c;
+  --block-pad: 12px;
+  --shadow-e1: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-e2: 0 2px 8px rgba(15, 23, 42, 0.08);
+  --shadow-e3: 0 12px 30px rgba(15, 23, 42, 0.22);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #ffffff; --surface: #f7f8fa; --card: #f7f8fa; --raised: #ffffff; --surface-2: #ffffff;
+  --border: #e3e6ea; --border-strong: #ced2d8; --fg: #0f1419; --muted: #5a636e; --faint: #676d75;
+  --success: #0a6e47; --warning: #854d0e; --danger: #c53d3d; --info: #2563eb;
+  --brand: #e4602b; --brand-strong: #a83f16;
+}
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --background-color-card: var(--card);
+  --background-color-raised: var(--raised);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-danger-solid: var(--danger-solid);
+  --color-info: var(--info);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-cta: var(--brand-cta);
+  --color-brand-cta-hover: var(--brand-cta-hover);
+  --color-brand-strong: var(--brand-strong);
+  --radius-card: 0.75rem;
+  --radius-control: 0.625rem;
+  --text-title: 1.125rem;
+  --text-title--line-height: 1.35;
+  --text-block: 1rem;
+  --text-block--line-height: 1.35;
+  --text-card: 1.0625rem;
+  --text-card--line-height: 1.35;
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.5;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --container-shell: 120rem;
+}
+
+@layer base {
+  *, ::before, ::after { border-color: var(--border); }
+  button, [role="button"], a[href] { cursor: pointer; }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.scrollbar-hidden { scrollbar-width: none; }
+.scrollbar-hidden::-webkit-scrollbar { display: none; }
+
+@keyframes skeleton-pulse { 50% { opacity: 0.5; } }
+.bg-skeleton { background-color: var(--surface-2); animation: skeleton-pulse 1.5s ease-in-out infinite; }
+
+input[type="date"], input[type="time"], input[type="datetime-local"] {
+  appearance: none;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Safari iPhone tự phóng trang khi ô nhập có chữ dưới 16px. */
+@media (pointer: coarse) {
+  input:not([type="checkbox"]):not([type="radio"]), textarea, select { font-size: max(16px, 1em); }
+  .touch-target { position: relative; }
+  .touch-target::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    min-width: 44px;
+    min-height: 44px;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (hover: none) {
+  button:not(:disabled):active, a[href]:active, [role="button"]:active { opacity: 0.55; }
+}
+
+/* `useChromeHidden` gắn thuộc tính này khi cuộn xuống. */
+[data-intercom-header] { transition: transform 0.2s ease-out; }
+:root[data-chrome-hidden] [data-intercom-header] { transform: translateY(-100%); }

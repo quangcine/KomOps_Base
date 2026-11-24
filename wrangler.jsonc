@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "komops-base",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-03-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "binding": "ASSETS", "directory": ".open-next/assets" },
+  // Tạo bucket riêng tư của bạn rồi thay tên: npx wrangler r2 bucket create komops-base-media
+  "r2_buckets": [{ "binding": "MEDIA_BUCKET", "bucket_name": "komops-base-media" }],
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "komops-base" }]
+}

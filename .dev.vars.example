@@ -1,0 +1,11 @@
+# Chép thành .dev.vars khi chạy thử; lên Cloudflare thì đặt bằng `npx wrangler secret put <TÊN>`.
+# Chỉ cần khi lưu ảnh vào Google Drive.
+GOOGLE_DRIVE_CLIENT_ID=
+GOOGLE_DRIVE_CLIENT_SECRET=
+# Hai chuỗi ngẫu nhiên khác nhau: openssl rand -hex 32
+INTERCOM_DRIVE_KEY=
+INTERCOM_DRIVE_GATE=
+INTERCOM_CRON_SECRET=
+# Chỉ cần cho mục Cloudflare của màn Monitor.
+CF_ANALYTICS_TOKEN=
+CF_ZONE_ID=
